@@ -5,6 +5,8 @@ import { Platform, View } from 'react-native';
 import CampsiteInfoScreen from './CampsiteInfoScreen';
 import HomeScreen from './HomeScreen';
 import DirectoryScreen from './DirectoryScreen';
+import AboutScreen from './AboutScreen';
+import ContactScreen from './ContactScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -48,6 +50,27 @@ const DirectoryNavigator = () => {
     );
 };
 
+const AboutNavigator = () => {
+    const Stack = createStackNavigator();
+    return (
+        <Stack.Navigator initialRouteName="About" screenOptions={screenOptions}>
+            <Stack.Screen name="About" component={AboutScreen} />
+        </Stack.Navigator>
+    );
+};
+
+const ContactNavigator = () => {
+    const Stack = createStackNavigator();
+    return (
+        <Stack.Navigator
+            initialRouteName="Contact"
+            screenOptions={screenOptions}
+        >
+            <Stack.Screen name="Contact" component={ContactScreen} />
+        </Stack.Navigator>
+    );
+};
+
 const Main = () => {
     return (
         <View
@@ -70,6 +93,12 @@ const Main = () => {
                     name="Directory"
                     component={DirectoryNavigator}
                     options={{ title: 'Directory' }}
+                />
+                <Drawer.Screen name="About" component={AboutNavigator} />
+                <Drawer.Screen
+                    name="Contact"
+                    component={ContactNavigator}
+                    title="Contact Us"
                 />
             </Drawer.Navigator>
         </View>
