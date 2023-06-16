@@ -3,6 +3,7 @@ import { Tile } from 'react-native-elements';
 import { useSelector } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 import Loading from '../components/LoadingComponent';
+import * as Animatable from 'react-native-animatable';
 
 const DirectoryScreen = ({ navigation }) => {
     const campsites = useSelector((state) => state.campsites);
@@ -20,15 +21,17 @@ const DirectoryScreen = ({ navigation }) => {
 
     const renderDirectoryItem = ({ item: campsite }) => {
         return (
-            <Tile
-                onPress={() =>
-                    navigation.navigate('CampsiteInfo', { campsite })
-                }
-                title={campsite.name}
-                caption={campsite.description}
-                featured
-                imageSrc={{ uri: baseUrl + campsite.image }}
-            />
+            <Animatable.View animation="fadeInRightBig" duration={2000}>
+                <Tile
+                    onPress={() =>
+                        navigation.navigate('CampsiteInfo', { campsite })
+                    }
+                    title={campsite.name}
+                    caption={campsite.description}
+                    featured
+                    imageSrc={{ uri: baseUrl + campsite.image }}
+                />
+            </Animatable.View>
         );
     };
 
